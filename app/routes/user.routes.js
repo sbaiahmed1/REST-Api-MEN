@@ -1,0 +1,18 @@
+module.exports = (app) => {
+    const user = require('../controllers/user.controller.js');
+
+    // Create a new Note
+    app.post('/user', user.create);
+
+    // Retrieve all Notes
+    app.get('/notes', user.findAll);
+
+    // Retrieve a single Note with noteId
+    app.get('/notes/:noteId', user.findOne);
+
+    // Update a Note with noteId
+    app.put('/notes/:noteId', user.update);
+
+    // Delete a Note with noteId
+    app.delete('/notes/:noteId', user.delete);
+}

@@ -1,23 +1,29 @@
 {
-  "name": "node-easy-notes-app",
-  "version": "1.0.0",
-  "description": "Never miss a thing in Life. Take notes quickly. Organize and keep track of all your notes.",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [
-    "Express",
-    "RestAPI",
-    "MongoDB",
-    "Mongoose",
-    "Notes"
-  ],
-  "author": "callicoder",
-  "license": "MIT",
-  "dependencies": {
-    "body-parser": "^1.18.3",
-    "express": "^4.17.1",
-    "mongoose": "^5.9.4"
-  }
+    "name": "REST-Api-MEN",
+    "version": "1.0.0",
+    "description": "This was made for my school project",
+    "main": "server.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "Express",
+        "RestAPI",
+        "MongoDB",
+        "Mongoose",
+        "Node",
+        "MERN"
+    ],
+    "author": "Ahmed Sbai",
+    "license": "MIT",
+    "dependencies": {
+        "bcrypt": "^4.0.1",
+        "bcryptjs": "^2.4.3",
+        "body-parser": "^1.18.3",
+        "express": "^4.17.1",
+        "mongoose": "^5.9.4"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.2"
+    }
 }
