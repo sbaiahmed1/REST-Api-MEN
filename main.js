@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 
 // create express app
 const app = express();
+const port = process.env.PORT || 3000
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -33,6 +34,6 @@ require('./app/routes/note.routes.js')(app);
 require('./app/routes/user.routes.js')(app);
 
 // listen for requests
-app.listen(3000, () => {
+app.listen(PORT, () => {
     console.log("Server is listening on port 3000");
 });
