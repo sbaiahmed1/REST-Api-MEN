@@ -1,5 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+var session = require('express-session');
+var MongoStore = require('connect-mongo')(session);
 
 // create express app
 const app = express();
@@ -18,12 +20,17 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 // Connecting to the database
-mongoose.connect(dbConfig.url).then(() => {
-    console.log("Successfully connected to the database");    
-}).catch(err => {
-    console.log('Could not connect to the database. Exiting now...', err);
-    process.exit();
-});
+mongoose.connect(dbConfig.url)
+var db = mongoose.connection
+db.on('error', console.error.bind(console, 'connection error:'));
+//use sessions for tracking logins
+app.use(session({
+    secret: 'work hard',
+    saveUninitialized: false,
+    store: new MongoStore({
+      mongooseConnection: db
+    })
+  }));
 
 // define a simple route
 app.get('/', (req, res) => {

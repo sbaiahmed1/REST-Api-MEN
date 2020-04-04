@@ -1,5 +1,6 @@
 const User = require("../models/user.model.js");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken")
 
 // Create and Save a new USER
 exports.create = async function create(req, res) {
@@ -129,7 +130,25 @@ exports.authenticate = (req, res) => {
         err.status = 401;
         return res.status(err.status).json( err.message );
       } else {
-        res.status(200).json(user);
+        req.session.userId = user._id;
+        const payload = {
+          user: {
+              id: user._id
+          }
+      };
+      jwt.sign(
+        payload,
+        "secret",
+        {
+          expiresIn: 3600
+        },
+        (err, token) => {
+          if (err) throw err;
+          res.status(200).json({
+            token
+          });
+        }
+      );
       }
     });
   }
