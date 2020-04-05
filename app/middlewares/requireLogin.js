@@ -9,8 +9,6 @@ module.exports = function (req, res, next) {
     req.user = decoded.user;
     next();
   } catch (e) {
-
-
-      res.status(500).send({ message: e.message });
-    }
+    res.status(500).send({ message: e.message });
+  }
 };

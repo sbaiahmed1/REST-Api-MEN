@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const NoteSchema = mongoose.Schema({
+const TaskSchema = mongoose.Schema({
     title: String,
     content: String,
 	checked : Boolean
@@ -8,4 +8,4 @@ const NoteSchema = mongoose.Schema({
     timestamps: true
 });
 
-module.exports = mongoose.model('Note', NoteSchema);
+module.exports = mongoose.model('Task', TaskSchema);

@@ -24,20 +24,20 @@ mongoose.connect(dbConfig.url)
 var db = mongoose.connection
 db.on('error', console.error.bind(console, 'connection error:'));
 //use sessions for tracking logins
-app.use(session({
-    secret: 'work hard',
-    saveUninitialized: false,
-    store: new MongoStore({
-      mongooseConnection: db
-    })
-  }));
+// app.use(session({
+//     secret: 'work hard',
+//     saveUninitialized: false,
+//     store: new MongoStore({
+//       mongooseConnection: db
+//     })
+//   }));
 
 // define a simple route
 app.get('/', (req, res) => {
     res.json({"message": "Welcome to EasyNotes application. Take notes quickly. Organize and keep track of all your notes."});
 });
 
-require('./app/routes/note.routes.js')(app);
+require('./app/routes/task.routes.js')(app);
 require('./app/routes/user.routes.js')(app);
 
 // listen for requests
