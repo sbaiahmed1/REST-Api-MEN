@@ -130,7 +130,6 @@ exports.authenticate = (req, res) => {
         err.status = 401;
         return res.status(err.status).json( err.message );
       } else {
-        req.session.userId = user._id;
         const payload = {
           user: {
               id: user._id

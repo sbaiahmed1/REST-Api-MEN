@@ -12,7 +12,7 @@ module.exports = app => {
   app.get("/task/:taskId", task.findOne);
 
   // Update a task with taskId
-  app.put("/task/", task.update);
+  app.put("/task", task.update);
 
   // Delete a Note with noteId
   app.delete("/task/:taskId", task.delete);
