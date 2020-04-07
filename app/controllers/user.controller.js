@@ -127,8 +127,8 @@ exports.authenticate = (req, res) => {
       if (error || !user) {
         var err = { message: "", status: "" };
         err.message = "Wrong email or password.";
-        err.status = 401;
-        return res.status(err.status).json( err.message );
+        // err.status = 401;
+        return res.json( err.message );
       } else {
         const payload = {
           user: {
