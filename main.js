@@ -1,7 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 var session = require('express-session');
-var MongoStore = require('connect-mongo')(session);
 
 // create express app
 const app = express();

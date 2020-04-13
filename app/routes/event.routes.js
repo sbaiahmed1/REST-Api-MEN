@@ -9,12 +9,13 @@ module.exports = app => {
     app.get("/event", event.findAll);
   
     // Retrieve a single Task with taskId
-    app.get("/event/:eventId", event.create);
+    app.get("/event/:eventId", event.findOne);
   
     // Update a task with taskId
-    app.put("/event", event.create);
-  
+    app.patch("/event/:eventId", event.update);// fel patch ab3ath zokomhom m3a query na3n din zeby
+    // asber nayek khalih kima houa zab 
+    
     // Delete a Note with noteId
-    app.delete("/event/:taskId", event.create);
+    app.delete("/event/:eventId", event.delete);
   };
   
