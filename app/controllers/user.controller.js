@@ -8,8 +8,13 @@ exports.create = async function create(req, res) {
   if (req.body.email && req.body.username && req.body.password) {
     var userData = {
       email: req.body.email,
+      name : req.body.name,
+      lastName: req.body.lastName,
       username: req.body.username,
       password: req.body.password,
+      role: req.body.role,
+      type: req.body.type,
+      imageName: req.body.imageName
     };
     //use schema.create to insert data into the db
     userData.password = await bcrypt.hashSync(userData.password, 10);
