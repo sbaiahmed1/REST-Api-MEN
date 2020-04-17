@@ -8,13 +8,13 @@ exports.create = async function create(req, res) {
   if (req.body.email && req.body.username && req.body.password) {
     var userData = {
       email: req.body.email,
-      name : req.body.name,
+      name: req.body.name,
       lastName: req.body.lastName,
       username: req.body.username,
       password: req.body.password,
       role: req.body.role,
       type: req.body.type,
-      imageName: req.body.imageName
+      imageName: req.body.imageName,
     };
     //use schema.create to insert data into the db
     userData.password = await bcrypt.hashSync(userData.password, 10);
@@ -75,12 +75,9 @@ exports.update = (req, res) => {
   // }
 
   // Find note and update it with the request body
-  User.findByIdAndUpdate(
-    req.params.userId,
-    {
-      $set: { role: req.body.role, type: req.body.type },
-    },
-  )
+  User.findByIdAndUpdate(req.params.userId, {
+    $set: { role: req.body.role, type: req.body.type },
+  })
     .then((user) => {
       if (!user) {
         return res.status(404).send({
@@ -141,7 +138,15 @@ exports.authenticate = (req, res) => {
             id: user._id,
           },
         };
-        var userData = user;
+        var userData = {
+          email: user.email,
+          name: user.name,
+          lastName: user.lastName,
+          username: user.username,
+          role: user.role,
+          type: user.type,
+          imageName: user.imageName,
+        };
         jwt.sign(
           payload,
           "secret",
