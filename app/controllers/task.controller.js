@@ -68,36 +68,93 @@ exports.findOne = (req, res) => {
 // Update a task identified by the taskId in the request
 exports.update = (req, res) => {
   // Validate Request
-  if (!req.body.content) {
-    return res.status(400).send({
-      message: "task content can not be empty",
-    });
+  var id = req.params.taskId;
+  if (!req.body.title && !req.body.content && !req.body.checked) {
+    return res.status(404).send("Task cannot be updated with empty values.");
   }
 
   // Find task and update it with the request body
-  Task.findByIdAndUpdate(
-    req.params.taskId,
-    {
-      content: req.body.content,
-    },
-    { new: true }
-  )
-    .then((task) => {
-      if (!task) {
-        return res.send("Task not found with id " + req.params.taskId);
-      }
-      res.send(task);
-    })
-    .catch((err) => {
-      if (err.kind === "ObjectId") {
-        return res.status(404).send({
-          message: "Task not found with id " + req.params.taskId,
+  if (req.body.title) {
+    Task.findByIdAndUpdate(
+      req.params.taskId,
+      {
+        $set: {
+          title: req.body.title,
+        },
+      },
+      { new: true }
+    )
+      .then((task) => {
+        if (!task) {
+          return res.send("Task not found with id " + req.params.taskId);
+        }
+        res.send(task);
+      })
+      .catch((err) => {
+        if (err.kind === "ObjectId") {
+          return res.status(404).send({
+            message: "Task not found with id " + req.params.taskId,
+          });
+        }
+        return res.status(500).send({
+          message: "Error updating Task with id " + req.params.taskId,
         });
-      }
-      return res.status(500).send({
-        message: "Error updating Task with id " + req.params.taskId,
       });
-    });
+  }
+  if (req.body.content) {
+    Task.findByIdAndUpdate(
+      req.params.taskId,
+      {
+        $set: {
+          content: req.body.content,
+        },
+      },
+      { new: true }
+    )
+      .then((task) => {
+        if (!task) {
+          return res.send("Task not found with id " + req.params.taskId);
+        }
+        res.send(task);
+      })
+      .catch((err) => {
+        if (err.kind === "ObjectId") {
+          return res.status(404).send({
+            message: "Task not found with id " + req.params.taskId,
+          });
+        }
+        return res.status(500).send({
+          message: "Error updating Task with id " + req.params.taskId,
+        });
+      });
+  }
+  if (req.body.checked) {
+    Task.findByIdAndUpdate(
+      req.params.taskId,
+      {
+        $set: {
+          checked: req.body.checked,
+        },
+      },
+      { new: true }
+    )
+      .then((task) => {
+        if (!task) {
+          return res.send("Task not found with id " + req.params.taskId);
+        }
+        res.send(task);
+      })
+      .catch((err) => {
+        if (err.kind === "ObjectId") {
+          return res.status(404).send({
+            message: "Task not found with id " + req.params.taskId,
+          });
+        }
+        return res.status(500).send({
+          message: "Error updating Task with id " + req.params.taskId,
+        });
+      });
+  }
 };
 
 // Delete a Task with the specified taskId in the request
