@@ -68,7 +68,7 @@ exports.findOne = (req, res) => {
 // Update a task identified by the taskId in the request
 exports.update = (req, res) => {
   // Validate Request
-  var id = req.params.taskId;
+  var id = req.body.taskId;
   if (!req.body.title && !req.body.content && !req.body.checked) {
     return res.status(404).send("Task cannot be updated with empty values.");
   }
@@ -76,7 +76,7 @@ exports.update = (req, res) => {
   // Find task and update it with the request body
   if (req.body.title) {
     Task.findByIdAndUpdate(
-      req.params.taskId,
+      id,
       {
         $set: {
           title: req.body.title,
@@ -130,7 +130,7 @@ exports.update = (req, res) => {
   }
   if (req.body.checked) {
     Task.findByIdAndUpdate(
-      req.params.taskId,
+      id,
       {
         $set: {
           checked: req.body.checked,
