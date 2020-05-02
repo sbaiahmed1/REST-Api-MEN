@@ -139,6 +139,7 @@ exports.authenticate = (req, res) => {
           },
         };
         var userData = {
+          id: user._id,
           email: user.email,
           name: user.name,
           lastName: user.lastName,
