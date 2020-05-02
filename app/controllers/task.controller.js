@@ -86,7 +86,7 @@ exports.update = (req, res) => {
     )
       .then((task) => {
         if (!task) {
-          return res.send("Task not found with id " + req.params.taskId);
+          return res.send("Task not found with id " + req.body.taskId);
         }
         res.send(task);
       })

@@ -65,7 +65,7 @@ exports.findOne = (req, res) => {
     });
 };
 
-// Update a note identified by the noteId in the request
+// Update a USER identified by the USERID in the request
 exports.update = (req, res) => {
   // Validate Request
   // if (!req.body.content) {
@@ -75,13 +75,13 @@ exports.update = (req, res) => {
   // }
 
   // Find note and update it with the request body
-  User.findByIdAndUpdate(req.params.userId, {
-    $set: { role: req.body.role, type: req.body.type },
+  User.findByIdAndUpdate(req.body.userId, {
+    $set: { imageName: req.body.imageName },
   })
     .then((user) => {
       if (!user) {
         return res.status(404).send({
-          message: "User not found with id " + req.params.userId,
+          message: "User not found with id " + req.body.userId,
         });
       }
       res.send(user);
@@ -89,11 +89,11 @@ exports.update = (req, res) => {
     .catch((err) => {
       if (err.kind === "ObjectId") {
         return res.status(404).send({
-          message: "User not found with id " + req.params.userId,
+          message: "User not found with id " + req.body.userId,
         });
       }
       return res.status(500).send({
-        message: "Error updating user with id " + req.params.userId,
+        message: "Error updating user with id " + req.body.userId,
       });
     });
 };
