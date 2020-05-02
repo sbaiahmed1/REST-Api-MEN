@@ -75,9 +75,13 @@ exports.update = (req, res) => {
   // }
 
   // Find note and update it with the request body
-  User.findByIdAndUpdate(req.body.userId, {
-    $set: { imageName: req.body.imageName },
-  })
+  User.findByIdAndUpdate(
+    req.body.userId,
+    {
+      $set: { imageName: req.body.imageName },
+    },
+    { new: true }
+  )
     .then((user) => {
       if (!user) {
         return res.status(404).send({
