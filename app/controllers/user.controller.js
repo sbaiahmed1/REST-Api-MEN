@@ -31,13 +31,13 @@ exports.create = async function create(req, res) {
 
 // Retrieve and return all notes from the database.
 exports.findAll = (req, res) => {
-  Note.find()
-    .then((notes) => {
-      res.send(notes);
+  User.find()
+    .then((users) => {
+      res.send(users);
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.message || "Some error occurred while retrieving notes.",
+        message: err.message || "Some error occurred while retrieving users.",
       });
     });
 };
