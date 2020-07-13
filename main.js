@@ -37,6 +37,7 @@ app.get('/', (req, res) => {
 require('./app/routes/event.routes')(app);
 require('./app/routes/task.routes.js')(app);
 require('./app/routes/user.routes.js')(app);
+require('./app/routes/transaction.routes.js')(app);
 
 // listen for requests
 app.listen(PORT, () => {
